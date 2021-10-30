@@ -28,7 +28,7 @@
       }
     },
     created: function () {
-      this.axios.get('http://iecosystem_backend.test/api/messages?page=1&perPage=100')
+      this.axios.get('https://iecosystem-api.tomyue.cc/api/messages?page=1&perPage=100')
         .then((response) => {
           this.messages = (response.data.data)
         })
@@ -42,7 +42,7 @@
         if (this.newMessage === '') {
           return false;
         }
-        this.axios.post('http://iecosystem_backend.test/api/messages', {body: this.newMessage})
+        this.axios.post('https://iecosystem-api.tomyue.cc/api/messages', {body: this.newMessage})
           .then((response) => {
             this.messages.push({body:this.newMessage, user_id:this.user.user.id})
             this.newMessage = ''

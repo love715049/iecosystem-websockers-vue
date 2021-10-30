@@ -18,10 +18,13 @@ echo.install = function (Vue) {
     // },
     broadcaster: 'pusher',
     key: 'laravel-websockets-key',
-    wsHost: window.location.hostname,  //TODO
-    wsPort: 6001,
-    forceTLS: false,
-    disableStats: true
+    // ws://192.168.1.105:8080/sockjs-node/345/xwmzvt4x/websocket
+    // wsHost: window.location.hostname,  //TODO
+    wsHost: 'iecosystem-api.tomyue.cc',  //TODO
+    wsPort: 6002,
+    wssPort: 6002,
+    forceTLS: true,
+    enabledTransports: ['ws', 'wss']
   })
 }
 //console.log('wsHost:', window.location.hostname) // localhost

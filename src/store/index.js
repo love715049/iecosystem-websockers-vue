@@ -4,8 +4,8 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-// axios.defaults.baseURL = 'https://iecosystem-api.tomyue.cc/api'
-axios.defaults.baseURL = 'http://iecosystem_backend.test/api' //TODO
+axios.defaults.baseURL = 'https://iecosystem-api.tomyue.cc/api'
+// axios.defaults.baseURL = 'http://iecosystem_backend.test/api' //TODO
 
 export default new Vuex.Store({
   state: {
