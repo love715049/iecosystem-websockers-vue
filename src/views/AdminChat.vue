@@ -4,7 +4,7 @@
     <ul v-for="message in messages">
       <li>
         {{ message.user_id }}
-        {{ message.user_id === user.user.id ? 'user:' : 'admin' }}
+        {{ message.user_id === userId ? 'user:' : 'admin:' }}
         {{ message.body }}
       </li>
     </ul>
@@ -14,7 +14,6 @@
 </template>
 <script>
   import {mapGetters} from "vuex";
-
   export default {
     computed: {
       ...mapGetters([
@@ -24,16 +23,17 @@
     data() {
       return {
         messages: [],
-        newMessage: ''
+        newMessage: '',
+        userId: 25 //TODO
       }
     },
     created: function () {
-      this.axios.get('http://iecosystem_backend.test/api/messages?page=1&perPage=100')
+      this.axios.get('http://iecosystem_backend.test/api/users/' + this.userId + '/messages?page=1&perPage=100')
         .then((response) => {
           this.messages = (response.data.data)
         })
-      this.$echo.channel('users.' + this.user.user.id)
-        .listen('AdminMessageCreatedEvent', e => {
+      this.$echo.channel('users.' + this.userId)
+        .listen('UserMessageCreatedEvent', e => {
           this.messages.push(e.message)
         })
     },
@@ -42,7 +42,7 @@
         if (this.newMessage === '') {
           return false;
         }
-        this.axios.post('http://iecosystem_backend.test/api/messages', {body: this.newMessage})
+        this.axios.post('http://iecosystem_backend.test/api/users/' + this.userId + '/messages', {body: this.newMessage})
           .then((response) => {
             this.messages.push({body:this.newMessage, user_id:this.user.user.id})
             this.newMessage = ''

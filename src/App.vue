@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/chat">Chat</router-link> |
+      <router-link to="/admin-chat">AdminChat</router-link> |
       <router-link to="/about" v-if="isLogged">About</router-link>
       <router-link to="/login" v-else>Login</router-link>
     </div>
